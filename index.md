@@ -131,7 +131,7 @@ Prototype - Website
   <div class="page">
 
     <div class="header">
-      <div class="logo">VISUAL AUDIO</div>
+      <div class="logo">Visual Audio Services</div>
       <div class="tagline">Sound • Lighting • Vision • Events</div>
     </div>
 
