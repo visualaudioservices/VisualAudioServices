@@ -7,56 +7,140 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
-      background: #020008;
-      color: white;
+      background: #000;
+      color: #fff;
       font-family: 'Press Start 2P', monospace;
-      font-size: 11px;
-      line-height: 1.8;
+      font-size: 10px;
+      line-height: 1.7;
       text-transform: uppercase;
-      background-image:
-        linear-gradient(rgba(0,255,255,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,255,255,0.04) 1px, transparent 1px);
-      background-size: 20px 20px;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.04) 0px,
+        rgba(255,255,255,0.04) 1px,
+        transparent 2px,
+        transparent 5px
+      );
+      z-index: 99;
     }
 
     .site {
       max-width: 1180px;
-      margin: 20px auto;
-      padding: 22px;
+      margin: 12px auto;
+      padding: 24px;
+      background: #020205;
       border: 4px solid #00eaff;
-      box-shadow: 0 0 25px #00eaff;
-      background: #050008;
+      box-shadow: 0 0 0 3px #003f55, 0 0 25px #00eaff;
     }
 
-    .top {
+    .top-grid {
+      display: grid;
+      grid-template-columns: 150px 1fr 150px;
+      align-items: center;
+      gap: 20px;
       text-align: center;
-      border-bottom: 3px solid #ff3bd4;
-      padding-bottom: 20px;
     }
 
     h1 {
       color: #00eaff;
-      font-size: 48px;
-      text-shadow: 4px 4px #ff3bd4;
-      margin: 10px 0;
-      line-height: 1.2;
+      font-size: 52px;
+      line-height: 0.95;
+      margin: 0;
+      text-shadow:
+        4px 4px 0 #006d8c,
+        8px 8px 0 #001f33;
     }
 
-    .subtitle {
+    .pink {
+      color: #ff4bd8;
+      font-size: 26px;
+      letter-spacing: 12px;
+      text-shadow: 4px 4px 0 #501050;
+      margin-top: 10px;
+    }
+
+    .tagline {
       color: #fff200;
+      margin-top: 15px;
+      font-size: 10px;
+    }
+
+    .eq {
+      height: 110px;
+      display: flex;
+      gap: 8px;
+      align-items: end;
+      justify-content: center;
+    }
+
+    .eq span {
+      width: 14px;
+      background: linear-gradient(#ff4bd8, #00eaff);
+      box-shadow: 0 0 8px #00eaff;
+    }
+
+    .eq span:nth-child(1) { height: 35px; }
+    .eq span:nth-child(2) { height: 70px; }
+    .eq span:nth-child(3) { height: 45px; }
+    .eq span:nth-child(4) { height: 95px; }
+    .eq span:nth-child(5) { height: 55px; }
+
+    .speaker-stack {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .speaker {
+      width: 72px;
+      height: 86px;
+      border: 4px solid #7b2cff;
+      background: #111;
+      box-shadow: 5px 5px 0 #201040;
+      position: relative;
+    }
+
+    .speaker::before,
+    .speaker::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      border: 4px solid #777;
+      background: #000;
+    }
+
+    .speaker::before {
+      width: 22px;
+      height: 22px;
+      top: 10px;
+    }
+
+    .speaker::after {
+      width: 42px;
+      height: 42px;
+      bottom: 10px;
     }
 
     .nav {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 10px;
-      margin: 20px 0;
+      margin: 25px 0 14px;
     }
 
     .nav a {
@@ -64,28 +148,33 @@
       border: 3px solid #00eaff;
       padding: 18px;
       text-decoration: none;
+      background: #050510;
       text-align: center;
-      background: #070019;
-      box-shadow: inset 0 0 15px #001f33;
+      box-shadow: inset 0 0 0 2px #003f55;
+      font-size: 12px;
     }
 
+    .nav a:nth-child(2) { color: #ff4bd8; }
+    .nav a:nth-child(3) { color: #fff200; }
+    .nav a:nth-child(4) { color: #68ff68; }
+
     .nav a:hover {
-      color: #ff3bd4;
-      border-color: #ff3bd4;
+      background: #111133;
+      transform: translateY(-2px);
     }
 
     .ticker {
-      border: 3px solid #ff3bd4;
+      border: 3px solid #ff4bd8;
       color: #fff200;
       padding: 8px;
-      margin-bottom: 18px;
       overflow: hidden;
       white-space: nowrap;
+      margin-bottom: 18px;
     }
 
     .ticker span {
       display: inline-block;
-      animation: scroll 14s linear infinite;
+      animation: scroll 16s linear infinite;
     }
 
     @keyframes scroll {
@@ -94,157 +183,268 @@
     }
 
     .hero {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 20px;
       border: 3px solid #7b2cff;
-      padding: 25px;
-      margin-bottom: 25px;
-      background: radial-gradient(circle, #130033, #020008);
+      min-height: 240px;
+      padding: 22px;
+      display: grid;
+      grid-template-columns: 310px 1fr;
+      gap: 25px;
+      background: radial-gradient(circle at center, #12001f, #000);
+      margin-bottom: 24px;
     }
 
     h2 {
       color: #00eaff;
-      text-shadow: 2px 2px #7b2cff;
-      font-size: 22px;
-    }
-
-    .stage {
-      border: 2px solid #7b2cff;
-      min-height: 230px;
-      display: flex;
-      align-items: end;
-      justify-content: center;
-      background:
-        radial-gradient(circle at 30% 20%, #ff3bd4 0 3%, transparent 15%),
-        radial-gradient(circle at 70% 20%, #00eaff 0 3%, transparent 15%),
-        linear-gradient(#080010, #000);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .stage::before {
-      content: "♫";
-      position: absolute;
-      font-size: 90px;
-      color: #ff3bd4;
-      top: 35px;
-      left: 45%;
-      text-shadow: 0 0 20px #ff3bd4;
-    }
-
-    .crowd {
-      width: 100%;
-      height: 70px;
-      background: repeating-linear-gradient(
-        90deg,
-        #000 0 12px,
-        #7b2cff 12px 18px,
-        #000 18px 28px
-      );
-      clip-path: polygon(0 60%, 100% 30%, 100% 100%, 0% 100%);
+      font-size: 20px;
+      line-height: 1.2;
+      margin: 0 0 16px;
     }
 
     .button {
       display: inline-block;
-      color: #ff3bd4;
-      border: 3px solid #ff3bd4;
-      padding: 12px 18px;
+      color: #ff4bd8;
+      border: 3px solid #ff4bd8;
+      padding: 10px 18px;
       text-decoration: none;
-      margin-top: 12px;
-      background: #120020;
-      box-shadow: 4px 4px #7b2cff;
+      background: #120010;
+      box-shadow: 4px 4px 0 #7b2cff;
+      margin-top: 8px;
+    }
+
+    .stage {
+      position: relative;
+      border: 2px solid #2b1245;
+      overflow: hidden;
+      min-height: 210px;
+      background:
+        radial-gradient(circle at 35% 10%, rgba(255,75,216,.8) 0 4%, transparent 18%),
+        radial-gradient(circle at 50% 10%, rgba(0,234,255,.8) 0 4%, transparent 18%),
+        radial-gradient(circle at 65% 10%, rgba(255,75,216,.8) 0 4%, transparent 18%),
+        linear-gradient(#050010, #000);
+    }
+
+    .truss {
+      position: absolute;
+      top: 12px;
+      left: 16%;
+      right: 16%;
+      height: 25px;
+      border: 3px solid #7b2cff;
+      background: repeating-linear-gradient(45deg, transparent 0 10px, #7b2cff 10px 13px);
+    }
+
+    .beam {
+      position: absolute;
+      top: 35px;
+      width: 75px;
+      height: 150px;
+      opacity: .75;
+      clip-path: polygon(40% 0, 60% 0, 100% 100%, 0 100%);
+    }
+
+    .beam.one { left: 32%; background: #ff4bd8; }
+    .beam.two { left: 43%; background: #00eaff; }
+    .beam.three { left: 54%; background: #ff4bd8; }
+
+    .performer {
+      position: absolute;
+      bottom: 55px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #fff;
+      font-size: 40px;
+      z-index: 3;
+    }
+
+    .crowd {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 75px;
+      background:
+        radial-gradient(circle, #7b2cff 0 6px, transparent 7px) 0 0 / 28px 28px,
+        linear-gradient(to top, #000 0 55%, transparent 55%);
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      color: #00eaff;
+      text-align: center;
+      justify-content: center;
+      margin: 20px 0 12px;
+    }
+
+    .section-title::before,
+    .section-title::after {
+      content: "";
+      height: 3px;
+      flex: 1;
+      background: #7b2cff;
     }
 
     .services {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
+      gap: 10px;
     }
 
     .card {
-      border: 3px solid #00eaff;
-      padding: 18px;
-      background: #030014;
-      min-height: 150px;
+      border: 2px solid #00eaff;
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 14px;
+      padding: 14px;
+      min-height: 110px;
+      background: #030309;
     }
 
     .icon {
-      font-size: 36px;
-      color: #fff200;
-      margin-bottom: 10px;
+      font-size: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+
+    .cyan { color: #00eaff; }
+    .pink-icon { color: #ff4bd8; }
+    .yellow { color: #fff200; }
+    .green { color: #68ff68; }
+    .purple { color: #7b2cff; }
 
     h3 {
-      color: #ff3bd4;
-      margin-top: 0;
-      font-size: 13px;
+      margin: 0 0 5px;
+      font-size: 12px;
+      color: #00eaff;
     }
+
+    .card:nth-child(2) h3 { color: #ff4bd8; }
+    .card:nth-child(3) h3 { color: #fff200; }
+    .card:nth-child(4) h3 { color: #68ff68; }
+    .card:nth-child(5) h3 { color: #7b2cff; }
 
     .gear {
+      margin: 18px 0;
       text-align: center;
-      border-top: 3px solid #fff200;
-      border-bottom: 3px solid #fff200;
-      padding: 20px;
-      margin: 25px 0;
-      color: #fff200;
     }
 
-    .gear-list {
-      color: white;
+    .gear h2 {
+      color: #fff200;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .gear-icons {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 12px;
+      align-items: start;
+    }
+
+    .gear-item {
+      color: #fff;
+      font-size: 8px;
+    }
+
+    .gear-pic {
+      font-size: 34px;
+      margin-bottom: 8px;
+      color: #aaa;
+    }
+
+    .gear-line {
+      color: #fff;
+      font-size: 10px;
       margin-top: 10px;
     }
 
+    .contact-title {
+      color: #ff4bd8;
+      text-align: center;
+      font-size: 18px;
+      margin: 10px 0;
+    }
+
     .contact {
-      border: 3px solid #ff3bd4;
-      padding: 20px;
+      border: 3px solid #7b2cff;
       display: grid;
-      grid-template-columns: 1fr 2fr;
+      grid-template-columns: 330px 1fr 180px;
       gap: 20px;
+      padding: 18px;
+      align-items: center;
+    }
+
+    .mailbox {
+      font-size: 54px;
+      color: #ff4bd8;
+      text-align: center;
     }
 
     input, textarea {
       width: 100%;
-      margin-bottom: 10px;
-      padding: 12px;
-      background: #020008;
-      border: 3px solid #00eaff;
+      background: #020205;
+      border: 2px solid #00eaff;
       color: #00eaff;
+      padding: 10px;
+      margin-bottom: 8px;
       font-family: 'Press Start 2P', monospace;
-      font-size: 9px;
+      font-size: 8px;
     }
 
     .send {
-      width: 100%;
-      background: #ff3bd4;
-      color: #020008;
-      border: 3px solid #fff;
-      padding: 15px;
-      font-family: 'Press Start 2P', monospace;
-      cursor: pointer;
+      display: block;
+      text-align: center;
+      background: #ff4bd8;
+      color: #140014;
+      border: 4px solid #ff9bea;
+      padding: 18px 10px;
+      text-decoration: none;
+      font-size: 14px;
+      box-shadow: 5px 5px 0 #7b2cff;
     }
 
     .footer {
       text-align: center;
       color: #00eaff;
-      font-size: 9px;
-      margin-top: 20px;
+      font-size: 8px;
+      margin-top: 18px;
     }
 
-    @media (max-width: 800px) {
-      .nav,
+    @media (max-width: 900px) {
+      .top-grid,
       .hero,
       .services,
-      .contact {
+      .contact,
+      .gear-icons {
         grid-template-columns: 1fr;
       }
 
+      .nav {
+        grid-template-columns: 1fr 1fr;
+      }
+
       h1 {
-        font-size: 28px;
+        font-size: 32px;
+      }
+
+      .pink {
+        font-size: 18px;
+        letter-spacing: 5px;
+      }
+
+      .eq,
+      .speaker-stack {
+        display: none;
       }
 
       .site {
-        margin: 8px;
+        margin: 6px;
+        padding: 14px;
+      }
+
+      .card {
+        grid-template-columns: 70px 1fr;
       }
     }
   </style>
@@ -254,25 +454,36 @@
 
   <div class="site">
 
-    <div class="top">
-      <h1>VISUAL AUDIO<br>SERVICES</h1>
-      <div class="subtitle">Sound • Lighting • Event Support • AV Installation</div>
-    </div>
+    <header class="top-grid">
+      <div class="eq">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
 
-    <div class="nav">
+      <div>
+        <h1>VISUAL AUDIO</h1>
+        <div class="pink">SERVICES</div>
+        <div class="tagline">Sound ✦ Lighting ✦ Event Support ✦ AV Installation</div>
+      </div>
+
+      <div class="speaker-stack">
+        <div class="speaker"></div>
+      </div>
+    </header>
+
+    <nav class="nav">
       <a href="#home">⌂ Home</a>
       <a href="#services">♫ Services</a>
       <a href="#gear">▣ Hire</a>
       <a href="#contact">✉ Contact</a>
-    </div>
+    </nav>
 
     <div class="ticker">
-      <span>*** LIVE SOUND • LIGHTING • AV HIRE • MUSIC PRODUCTION • EVENT SUPPORT ***</span>
+      <span>&lt;&lt;&lt; *** Live Sound ✦ Lighting ✦ AV Hire ✦ Music Production ✦ Event Support *** &gt;&gt;&gt;</span>
     </div>
 
     <section class="hero" id="home">
       <div>
-        <h2>Welcome To Visual Audio</h2>
+        <h2>Welcome To<br>Visual Audio</h2>
         <p>
           We bring venue-shaking sound and eye-burning visuals to gigs,
           parties, festivals, corporate events and weird little warehouse shows.
@@ -281,61 +492,90 @@
       </div>
 
       <div class="stage">
+        <div class="truss"></div>
+        <div class="beam one"></div>
+        <div class="beam two"></div>
+        <div class="beam three"></div>
+        <div class="performer">♬</div>
         <div class="crowd"></div>
       </div>
     </section>
 
-    <h2 id="services" style="text-align:center;">Our Services</h2>
+    <h2 class="section-title" id="services">Our Services</h2>
 
     <section class="services">
       <div class="card">
-        <div class="icon">▰</div>
-        <h3>Live Sound</h3>
-        <p>PA systems, mixing, stage setup and event audio.</p>
+        <div class="icon cyan">▣</div>
+        <div>
+          <h3>Live Sound</h3>
+          <p>PA systems, mixing, stage setup and event audio.</p>
+        </div>
       </div>
 
       <div class="card">
-        <div class="icon">☀</div>
-        <h3>Lighting</h3>
-        <p>Party lights, stage lighting and visual atmosphere.</p>
+        <div class="icon pink-icon">☀</div>
+        <div>
+          <h3>Lighting</h3>
+          <p>Party lights, stage lighting and visual atmosphere.</p>
+        </div>
       </div>
 
       <div class="card">
-        <div class="icon">▣</div>
-        <h3>AV Hire</h3>
-        <p>Speakers, mixers, mics, projectors and event gear.</p>
+        <div class="icon yellow">▰</div>
+        <div>
+          <h3>AV Hire</h3>
+          <p>Speakers, mixers, mics, projectors and event gear.</p>
+        </div>
       </div>
 
       <div class="card">
-        <div class="icon">♫</div>
-        <h3>Music Production</h3>
-        <p>Recording, mixing, editing and creative audio work.</p>
+        <div class="icon green">♫</div>
+        <div>
+          <h3>Music Production</h3>
+          <p>Recording, mixing, editing and creative audio work.</p>
+        </div>
       </div>
 
       <div class="card">
-        <div class="icon">☻</div>
-        <h3>Corporate Events</h3>
-        <p>Clean, reliable AV for meetings and presentations.</p>
+        <div class="icon purple">♟</div>
+        <div>
+          <h3>Corporate Events</h3>
+          <p>Clean, reliable AV for meetings and presentations.</p>
+        </div>
       </div>
 
       <div class="card">
-        <div class="icon">⌂</div>
-        <h3>Festivals</h3>
-        <p>Sound and lighting support for outdoor events.</p>
+        <div class="icon cyan">⌂</div>
+        <div>
+          <h3>Festivals</h3>
+          <p>Sound and lighting support for outdoor events.</p>
+        </div>
       </div>
     </section>
 
     <section class="gear" id="gear">
       <h2>Powered By Serious Gear</h2>
-      <div class="gear-list">
-        Mixers • Speakers • Wireless Mics • IEMs • Lighting • Cables • Stands
+
+      <div class="gear-icons">
+        <div class="gear-item"><div class="gear-pic">▦</div>Mixers</div>
+        <div class="gear-item"><div class="gear-pic">▣</div>Speakers</div>
+        <div class="gear-item"><div class="gear-pic">♬</div>Wireless Mics</div>
+        <div class="gear-item"><div class="gear-pic">◉</div>IEMs</div>
+        <div class="gear-item"><div class="gear-pic">◌</div>Lighting</div>
+        <div class="gear-item"><div class="gear-pic">◎</div>Cables</div>
+        <div class="gear-item"><div class="gear-pic">⌐</div>Stands</div>
       </div>
-      <p>Everything needed to make your event look loud and sound bright.</p>
+
+      <div class="gear-line">
+        Everything needed to make your event look loud and sound bright.
+      </div>
     </section>
 
-    <section class="contact" id="contact">
+    <h2 class="contact-title" id="contact">Contact The Crew</h2>
+
+    <section class="contact">
       <div>
-        <h2>Contact The Crew</h2>
+        <div class="mailbox">✉</div>
         <p>Hit us up and let’s make your event unforgettable.</p>
       </div>
 
@@ -343,18 +583,19 @@
         <input type="text" placeholder="YOUR NAME">
         <input type="email" placeholder="EMAIL ADDRESS">
         <input type="text" placeholder="EVENT DATE / VENUE">
-        <textarea rows="5" placeholder="TELL US ABOUT YOUR EVENT..."></textarea>
-        <a href="mailto:youremail@example.com">
-          <button class="send" type="button">SEND MESSAGE ▶</button>
-        </a>
+        <textarea rows="4" placeholder="TELL US ABOUT YOUR EVENT..."></textarea>
       </form>
+
+      <a class="send" href="mailto:youremail@example.com">
+        Send<br>Message ▶
+      </a>
     </section>
 
-    <div class="footer">
+    <footer class="footer">
       Best viewed at 1024x768<br>
       © 2004–2026 Visual Audio<br>
       Website powered by sound waves, caffeine and dodgy cables.
-    </div>
+    </footer>
 
   </div>
 
