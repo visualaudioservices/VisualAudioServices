@@ -1,7 +1,7 @@
 # VisualAudioServices
 <html>
 <head>
-  <title>Visual Audio - Music & AV Services</title>
+  <title>Visual Audio - AV Services</title>
   <style>
     body {
       background: #000033;
@@ -129,14 +129,14 @@
   <div class="page">
 
     <div class="header">
-      <div class="logo">Visual Audio Services</div>
-      <div class="tagline">Sound • Lighting • Vision • Events</div>
+      <div class="logo">VISUAL AUDIO SERVICES</div>
+      <div class="tagline">Sound • Lighting • Event Support • AV Installation</div>
     </div>
 
     <div class="nav">
-      <a href="#home">ENTER SITE</a>
+      <a href="#home">HOME</a>
       <a href="#services">SERVICES</a>
-      <a href="#gear">GEAR</a>
+      <a href="#gear">HIRE</a>
       <a href="#contact">CONTACT</a>
     </div>
 
