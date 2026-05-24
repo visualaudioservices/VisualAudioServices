@@ -6,7 +6,7 @@
     body {
       background: #000033;
       color: #ffffff;
-      font-family: Verdana, Arial, sans-serif;
+      font-family: 'PT Mono', monospace;
       margin: 0;
       text-align: center;
     }
