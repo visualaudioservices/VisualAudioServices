@@ -1,0 +1,52 @@
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.site {
+  width: min(100vw, 1024px);
+  position: relative;
+  background: #000;
+}
+
+.site img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hotspot {
+  position: absolute;
+  display: block;
+  z-index: 5;
+  border: 0;
+}
+
+/* Uncomment while editing to see clickable zones */
+/* .hotspot { outline: 2px solid red; background: rgba(255,0,0,.15); } */
+
+.nav-home     { left: 4.2%;  top: 14.5%; width: 21.8%; height: 4.1%; }
+.nav-services { left: 27.0%; top: 14.5%; width: 21.8%; height: 4.1%; }
+.nav-hire     { left: 50.2%; top: 14.5%; width: 21.8%; height: 4.1%; }
+.nav-contact  { left: 73.3%; top: 14.5%; width: 22.5%; height: 4.1%; }
+
+.book { left: 5.0%; top: 34.5%; width: 17.5%; height: 3.6%; }
+.send { left: 76.2%; top: 88.7%; width: 18.3%; height: 6.7%; }
+
+#home, #services, #hire, #contact {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+}
+
+#home { top: 19%; }
+#services { top: 42%; }
+#hire { top: 68%; }
+#contact { top: 82%; }
