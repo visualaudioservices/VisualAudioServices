@@ -1,215 +1,354 @@
-# VisualAudioServices
+<!DOCTYPE html>
 <html>
 <head>
-  <title>Visual Audio - AV Services</title>
+  <title>Visual Audio Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      background: #000033;
-      color: #ffffff;
-      font-family: 'PT Mono', monospace;
       margin: 0;
+      background: #020008;
+      color: white;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 11px;
+      line-height: 1.8;
+      text-transform: uppercase;
+      background-image:
+        linear-gradient(rgba(0,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,255,0.04) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    .site {
+      max-width: 1180px;
+      margin: 20px auto;
+      padding: 22px;
+      border: 4px solid #00eaff;
+      box-shadow: 0 0 25px #00eaff;
+      background: #050008;
+    }
+
+    .top {
       text-align: center;
+      border-bottom: 3px solid #ff3bd4;
+      padding-bottom: 20px;
     }
 
-    .page {
-      width: 900px;
-      margin: auto;
-      background: #000000;
-      border: 4px ridge #00ccff;
-    }
-
-    .header {
-      background: linear-gradient(#333399, #000000);
-      padding: 30px;
-      border-bottom: 3px solid #00ccff;
-    }
-
-    .logo {
+    h1 {
+      color: #00eaff;
       font-size: 48px;
-      color: #00ffff;
-      text-shadow: 3px 3px #ff00ff;
-      letter-spacing: 3px;
+      text-shadow: 4px 4px #ff3bd4;
+      margin: 10px 0;
+      line-height: 1.2;
     }
 
-    .tagline {
-      color: #ffff00;
-      font-size: 18px;
-      margin-top: 10px;
+    .subtitle {
+      color: #fff200;
     }
 
     .nav {
-      background: #111111;
-      padding: 12px;
-      border-bottom: 2px solid #666666;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 20px 0;
     }
 
     .nav a {
-      color: #ffffff;
-      background: linear-gradient(#666666, #222222);
-      padding: 8px 16px;
-      margin: 4px;
-      border: 2px outset #aaaaaa;
+      color: #00eaff;
+      border: 3px solid #00eaff;
+      padding: 18px;
       text-decoration: none;
-      font-weight: bold;
+      text-align: center;
+      background: #070019;
+      box-shadow: inset 0 0 15px #001f33;
     }
 
     .nav a:hover {
-      color: #00ffff;
-      border: 2px inset #aaaaaa;
+      color: #ff3bd4;
+      border-color: #ff3bd4;
     }
 
-    .marquee {
-      background: #ff00ff;
-      color: #ffffff;
+    .ticker {
+      border: 3px solid #ff3bd4;
+      color: #fff200;
       padding: 8px;
-      font-weight: bold;
+      margin-bottom: 18px;
+      overflow: hidden;
+      white-space: nowrap;
     }
 
-    .section {
-      margin: 20px;
-      padding: 20px;
-      background: #111144;
-      border: 3px groove #00ccff;
+    .ticker span {
+      display: inline-block;
+      animation: scroll 14s linear infinite;
+    }
+
+    @keyframes scroll {
+      from { transform: translateX(100%); }
+      to { transform: translateX(-100%); }
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 20px;
+      border: 3px solid #7b2cff;
+      padding: 25px;
+      margin-bottom: 25px;
+      background: radial-gradient(circle, #130033, #020008);
     }
 
     h2 {
-      color: #00ffff;
-      text-shadow: 2px 2px #ff00ff;
+      color: #00eaff;
+      text-shadow: 2px 2px #7b2cff;
+      font-size: 22px;
+    }
+
+    .stage {
+      border: 2px solid #7b2cff;
+      min-height: 230px;
+      display: flex;
+      align-items: end;
+      justify-content: center;
+      background:
+        radial-gradient(circle at 30% 20%, #ff3bd4 0 3%, transparent 15%),
+        radial-gradient(circle at 70% 20%, #00eaff 0 3%, transparent 15%),
+        linear-gradient(#080010, #000);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stage::before {
+      content: "♫";
+      position: absolute;
+      font-size: 90px;
+      color: #ff3bd4;
+      top: 35px;
+      left: 45%;
+      text-shadow: 0 0 20px #ff3bd4;
+    }
+
+    .crowd {
+      width: 100%;
+      height: 70px;
+      background: repeating-linear-gradient(
+        90deg,
+        #000 0 12px,
+        #7b2cff 12px 18px,
+        #000 18px 28px
+      );
+      clip-path: polygon(0 60%, 100% 30%, 100% 100%, 0% 100%);
+    }
+
+    .button {
+      display: inline-block;
+      color: #ff3bd4;
+      border: 3px solid #ff3bd4;
+      padding: 12px 18px;
+      text-decoration: none;
+      margin-top: 12px;
+      background: #120020;
+      box-shadow: 4px 4px #7b2cff;
     }
 
     .services {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
+      gap: 12px;
     }
 
-    .box {
-      background: #000000;
-      border: 2px solid #ffff00;
-      padding: 15px;
-      color: #ffffff;
+    .card {
+      border: 3px solid #00eaff;
+      padding: 18px;
+      background: #030014;
+      min-height: 150px;
     }
 
-    .button {
-      display: inline-block;
-      margin-top: 20px;
-      background: linear-gradient(#ff00ff, #660066);
+    .icon {
+      font-size: 36px;
+      color: #fff200;
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      color: #ff3bd4;
+      margin-top: 0;
+      font-size: 13px;
+    }
+
+    .gear {
+      text-align: center;
+      border-top: 3px solid #fff200;
+      border-bottom: 3px solid #fff200;
+      padding: 20px;
+      margin: 25px 0;
+      color: #fff200;
+    }
+
+    .gear-list {
       color: white;
-      padding: 12px 25px;
-      border: 3px outset #ff99ff;
-      text-decoration: none;
-      font-weight: bold;
+      margin-top: 10px;
     }
 
-    .button:hover {
-      border: 3px inset #ff99ff;
-    }
-
-    .footer {
-      background: #000000;
-      color: #999999;
-      padding: 15px;
-      font-size: 12px;
-      border-top: 2px solid #00ccff;
+    .contact {
+      border: 3px solid #ff3bd4;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 20px;
     }
 
     input, textarea {
-      width: 80%;
-      padding: 8px;
-      margin: 8px;
-      background: #000000;
-      color: #00ffff;
-      border: 2px solid #00ccff;
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 12px;
+      background: #020008;
+      border: 3px solid #00eaff;
+      color: #00eaff;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 9px;
+    }
+
+    .send {
+      width: 100%;
+      background: #ff3bd4;
+      color: #020008;
+      border: 3px solid #fff;
+      padding: 15px;
+      font-family: 'Press Start 2P', monospace;
+      cursor: pointer;
+    }
+
+    .footer {
+      text-align: center;
+      color: #00eaff;
+      font-size: 9px;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 800px) {
+      .nav,
+      .hero,
+      .services,
+      .contact {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .site {
+        margin: 8px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <div class="page">
+  <div class="site">
 
-    <div class="header">
-      <div class="logo">VISUAL AUDIO SERVICES</div>
-      <div class="tagline">Sound • Lighting • Event Support • AV Installation</div>
+    <div class="top">
+      <h1>VISUAL AUDIO<br>SERVICES</h1>
+      <div class="subtitle">Sound • Lighting • Event Support • AV Installation</div>
     </div>
 
     <div class="nav">
-      <a href="#home">HOME</a>
-      <a href="#services">SERVICES</a>
-      <a href="#gear">HIRE</a>
-      <a href="#contact">CONTACT</a>
+      <a href="#home">⌂ Home</a>
+      <a href="#services">♫ Services</a>
+      <a href="#gear">▣ Hire</a>
+      <a href="#contact">✉ Contact</a>
     </div>
 
-    <div class="marquee">
-      <marquee>*** LIVE SOUND • LIGHTING • AV HIRE • MUSIC PRODUCTION • EVENT SUPPORT ***</marquee>
+    <div class="ticker">
+      <span>*** LIVE SOUND • LIGHTING • AV HIRE • MUSIC PRODUCTION • EVENT SUPPORT ***</span>
     </div>
 
-    <div class="section" id="home">
-      <h2>Welcome to Visual Audio</h2>
-      <p>
-        We bring venue-shaking sound and eye-burning visuals to gigs,
-        parties, festivals, corporate events and weird little warehouse shows.
-      </p>
-      <a class="button" href="#contact">BOOK NOW</a>
-    </div>
-
-    <div class="section" id="services">
-      <h2>Our Services</h2>
-
-      <div class="services">
-        <div class="box">
-          <h3>Live Sound</h3>
-          <p>PA systems, mixing, stage setup and event audio.</p>
-        </div>
-
-        <div class="box">
-          <h3>Lighting</h3>
-          <p>Party lights, stage lighting and visual atmosphere.</p>
-        </div>
-
-        <div class="box">
-          <h3>AV Hire</h3>
-          <p>Speakers, mixers, mics, projectors and event gear.</p>
-        </div>
-
-        <div class="box">
-          <h3>Music Production</h3>
-          <p>Recording, mixing, editing and creative audio work.</p>
-        </div>
-
-        <div class="box">
-          <h3>Corporate Events</h3>
-          <p>Clean, reliable AV for meetings and presentations.</p>
-        </div>
-
-        <div class="box">
-          <h3>Festivals</h3>
-          <p>Sound and lighting support for outdoor events.</p>
-        </div>
+    <section class="hero" id="home">
+      <div>
+        <h2>Welcome To Visual Audio</h2>
+        <p>
+          We bring venue-shaking sound and eye-burning visuals to gigs,
+          parties, festivals, corporate events and weird little warehouse shows.
+        </p>
+        <a class="button" href="#contact">Book Now ▶</a>
       </div>
-    </div>
 
-    <div class="section" id="gear">
+      <div class="stage">
+        <div class="crowd"></div>
+      </div>
+    </section>
+
+    <h2 id="services" style="text-align:center;">Our Services</h2>
+
+    <section class="services">
+      <div class="card">
+        <div class="icon">▰</div>
+        <h3>Live Sound</h3>
+        <p>PA systems, mixing, stage setup and event audio.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">☀</div>
+        <h3>Lighting</h3>
+        <p>Party lights, stage lighting and visual atmosphere.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">▣</div>
+        <h3>AV Hire</h3>
+        <p>Speakers, mixers, mics, projectors and event gear.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">♫</div>
+        <h3>Music Production</h3>
+        <p>Recording, mixing, editing and creative audio work.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">☻</div>
+        <h3>Corporate Events</h3>
+        <p>Clean, reliable AV for meetings and presentations.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">⌂</div>
+        <h3>Festivals</h3>
+        <p>Sound and lighting support for outdoor events.</p>
+      </div>
+    </section>
+
+    <section class="gear" id="gear">
       <h2>Powered By Serious Gear</h2>
-      <p>
-        Mixers • Speakers • Wireless Mics • IEMs • Lighting Fixtures • Cables • Stands
-      </p>
-      <p>
-        Everything needed to make your event look loud and sound bright.
-      </p>
-    </div>
+      <div class="gear-list">
+        Mixers • Speakers • Wireless Mics • IEMs • Lighting • Cables • Stands
+      </div>
+      <p>Everything needed to make your event look loud and sound bright.</p>
+    </section>
 
-    <div class="section" id="contact">
-      <h2>Contact The Crew</h2>
+    <section class="contact" id="contact">
+      <div>
+        <h2>Contact The Crew</h2>
+        <p>Hit us up and let’s make your event unforgettable.</p>
+      </div>
 
       <form>
-        <input type="text" placeholder="Your Name"><br>
-        <input type="email" placeholder="Email Address"><br>
-        <input type="text" placeholder="Event Date / Venue"><br>
-        <textarea rows="6" placeholder="Tell us about your event"></textarea><br>
-        <a class="button" href="mailto:youremail@example.com">SEND MESSAGE</a>
+        <input type="text" placeholder="YOUR NAME">
+        <input type="email" placeholder="EMAIL ADDRESS">
+        <input type="text" placeholder="EVENT DATE / VENUE">
+        <textarea rows="5" placeholder="TELL US ABOUT YOUR EVENT..."></textarea>
+        <a href="mailto:youremail@example.com">
+          <button class="send" type="button">SEND MESSAGE ▶</button>
+        </a>
       </form>
-    </div>
+    </section>
 
     <div class="footer">
       Best viewed at 1024x768<br>
