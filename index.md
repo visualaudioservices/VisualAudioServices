@@ -1,6 +1,4 @@
 # VisualAudioServices
-Prototype - Website
-<!DOCTYPE html>
 <html>
 <head>
   <title>Visual Audio - Music & AV Services</title>
