@@ -1,2 +1,0 @@
-# VisualAudioServices
-Prototype - Website
